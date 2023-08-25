@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="user in users">{{ user.title }}</div>
+    <div v-for="user in users" v-bind:key="user">{{ user.title }}</div>
     <div>
       <router-link to="/user">User</router-link>|
       <router-link to="/item">Item</router-link>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { fetchNewsList } from '../api/index.js';
 
 export default {
   data() {
@@ -18,8 +18,8 @@ export default {
     }
   },
   created() {
-    var vm = this;
-    axios.get('https://api.hnpwa.com/v0/news/1.json')
+    var vm = this; // this 바인딩
+    fetchNewsList()
       .then(function(response){
         console.log(response);
         vm.users = response.data;
