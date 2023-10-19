@@ -1,22 +1,48 @@
 <template>
   <div>
-    <!-- <div v-for="item in fetchedAsk" v-bind:key="item.id">{{  item.title  }}</div>-->
-    <p v-for="item in fetchedAsk" v-bind:key="item.id">
-      <!-- <a v-bind:href="item.url">{{ item.title }}</a> -->
+    <list-item></list-item>
+    <!-- <ul class="asks-list">
+      <li v-for="item in fetchedAsk" class="post" v-bind:key="item.id">
+        <div class="points">
+          {{  item.points }}
+        </div>
+        <div>
+          <p class="asks-title">
+            <router-link v-bind:to="`/item/${item.id}`">
+              {{  item.title }}
+            </router-link>
+          </p>
+          <small class="link-text">
+            {{ item.time_ago }} by
+            <router-link v-bind:to="`user/${item.user}`" class="link-text">
+              {{  item.user }}
+            </router-link>
+          </small>
+        </div>
+      </li>
+    </ul> -->
+    <!-- <p v-for="item in fetchedAsk" v-bind:key="item.id">     
       <router-link v-bind:to="`/item/${item.id}`">{{ item.title }}</router-link>
       <small> {{( item.time_ago )}} | {{ item.user }}</small>
-    </p>
+    </p> -->
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+  import ListItem from '../components/ListItem.vue';
 
-export default {
-  computed : {
-    ...mapGetters([
-      'fetchedAsk'
-    ])
+  export default {
+    components: {
+      ListItem
+    }
+  }  
+// import { mapGetters } from 'vuex';
+
+// export default {
+//   computed : {
+//     ...mapGetters([
+//       'fetchedAsk'
+//     ])
     // #3번째 방법 
     // ...mapGetters({
     //   fetchedAsk : 'fetchedAsk'
@@ -30,9 +56,10 @@ export default {
       //     return this.$store.state.asks;
       // }
       
-  },
-  created(){
-    this.$store.dispatch('FETCH_ASKS')
+  // },
+  // created(){
+  //   console.log(this.$route);
+  //   this.$store.dispatch('FETCH_ASKS')
   //   var vm = this;
   //   fetchAskList()
   //     .then(function(response){
@@ -41,7 +68,7 @@ export default {
   //     .catch(function(error){
   //       console.log(error);
   //     })
-  }
+  // }
 
 
 
@@ -64,7 +91,7 @@ export default {
   //     this.CREATE_POST(postData);
   //   }
   // }
-}
+// }
 </script>
 
 <style>

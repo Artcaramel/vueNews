@@ -1,25 +1,55 @@
 <template>
   <div>
+    <list-item></list-item>
+    <!-- <ul class="jobs-list">
+      <li v-for="job in fetchJob" class="post" v-bind:key="job.id">
+        <div class="points">
+          {{  job.points || 0 }}
+        </div>
+        <div>
+          <p class="jobs-title">
+            <a v-bind:href="job.url">
+              {{ job.title }}
+            </a>
+          </p>
+          
+          <small class="link-text">
+            {{( job.time_ago )}} by
+            <a v-bind:href="job.url">
+              {{ job.domain }}
+            </a>
+          </small>
+        </div>
+      </li>
+    </ul> -->
     <!-- <div v-for="job in this.$store.state.jobs" v-bind:key="job.id">{{ job.title }}</div> -->
-    <p v-for="job in fetchJob" v-bind:key="job.id">
+    <!-- <p v-for="job in fetchJob" v-bind:key="job.id">
     <a v-bind:href="job.url">{{ job.title }}</a>
     <small> {{(job.time_ago)}} | {{(job.domain)}}</small>
-    </p>
+    </p> -->
   </div>
 </template>
 
 <script>
-export default {
-  computed: {
-    fetchJob(){
-      return this.$store.state.jobs;
-    }
-  },
-  created() {
-    this.$store.dispatch('FETCH_JOBS')
-  }
+import ListItem from '../components/ListItem.vue';
 
+export default{
+  components: {
+    ListItem,
+  }
 }
+
+// export default {
+//   computed: {
+//     fetchJob(){
+//       return this.$store.state.jobs;
+//     }
+//   },
+//   created() {
+//     this.$store.dispatch('FETCH_JOBS')
+//   }
+
+// }
 // .then( (response) =>{
 // this.users = response.data,
 // console.log(response)
@@ -27,5 +57,4 @@ export default {
 </script>
 
 <style>
-
 </style>
