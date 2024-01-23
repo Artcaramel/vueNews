@@ -1,11 +1,17 @@
-import { fetchAskList,fetchNewsList,fetchJobsList,fetchUserInfo,fetchAskItem } from '../api/index.js';
+import { fetchAskList,
+         fetchNewsList,
+         fetchJobsList,
+         fetchList,
+         fetchUserInfo,
+         fetchAskItem } from '../api/index.js';
 
 export default {
     FETCH_NEWS(context){
         fetchNewsList()
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 context.commit('SET_NEWS', response.data);
+                 return response
                 // this.state.news = response.data  action-> state로 갈 수 없어서 이건 사용 불가능. mutation을 꼭 거쳐야함
             })
             .catch(error => {
@@ -48,6 +54,11 @@ export default {
             .catch(error => {
                 console.log(error);
             })
+    },
+    FETCH_LIST({ commit }, pageName) {
+        fetchList(pageName)
+        .then(({ data }) => commit('SET_LIST', data))
+        .catch(error => console.log(error));
     }
 
     // CREATE_POST({ commit }, postData) {

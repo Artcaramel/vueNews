@@ -4,16 +4,42 @@
     <transition name="page">
       <router-view></router-view>
     </transition>
+    <spinner :loading="loadingStatus"></spinner>
   </div>
 </template>
 
 <script>
 import ToolBar from './components/ToolBar.vue';
-
+import Spinner from './components/Spinner.vue';
+import bus from './utils/bus.js';
 
 export default {
   components: {
-    ToolBar
+    ToolBar,
+    Spinner
+  },
+  data(){
+    return {
+      loadingStatus : false,
+    }
+  },
+  methods: {
+    startSpinner() {
+      this.loadingStatus = true;
+    },
+    endSpinner() {
+      this.loadingStatus = false;
+    }
+  },
+  created() {
+    bus.$on('start:spinner' , this.startSpinner);
+    bus.$on('end:spinner', this.endSpinner)
+  },
+  // 이벤트 사용할 때는 무조건 beforeDestroy() 사용이 필요하다
+  // App 컴포넌트 아래에 있는 router-view 컴포넌트에서 화면이 변환되는 것이기 때문에 탭이나 브라우저를 끄지 않는 이상 App 컴포넌트가 소멸되지 않는다.
+  beforeDestroy() {
+    bus.$off('start:spinner' , this.startSpinner);
+    bus.$off('end:spinner', this.endSpinner)
   }
 }
 </script>
