@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router';
-import NewsView from '../views/NewsView';
-import AskView from '../views/AskView';
-import JobsView from '../views/JobsView';
+// import NewsView from '../views/NewsView';
+// import AskView from '../views/AskView';
+// import JobsView from '../views/JobsView';
 import UserView from '../views/UserView';
 import ItemView from '../views/ItemView';
 import createListView from '../views/CreateListView.js';

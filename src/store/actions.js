@@ -6,37 +6,37 @@ import { fetchAskList,
          fetchAskItem } from '../api/index.js';
 
 export default {
-    FETCH_NEWS(context){
-        fetchNewsList()
-            .then(response => {
-                // console.log(response.data);
-                context.commit('SET_NEWS', response.data);
-                 return response
-                // this.state.news = response.data  action-> state로 갈 수 없어서 이건 사용 불가능. mutation을 꼭 거쳐야함
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    },
-    FETCH_JOBS({ commit }){   // Destructuring 사용해서 생략
-        fetchJobsList()
-            .then(({ data }) => {
-                commit('SET_JOBS',data);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+    // FETCH_NEWS(context){
+    //     fetchNewsList()
+    //         .then(response => {
+    //             // console.log(response.data);
+    //             context.commit('SET_NEWS', response.data);
+    //              return response
+    //             // this.state.news = response.data  action-> state로 갈 수 없어서 이건 사용 불가능. mutation을 꼭 거쳐야함
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // },
+    // FETCH_JOBS({ commit }){   // Destructuring 사용해서 생략
+    //     fetchJobsList()
+    //         .then(({ data }) => {
+    //             commit('SET_JOBS',data);
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
 
-    },
-    FETCH_ASKS({ commit }){
-        fetchAskList()
-            .then(({ data }) => {
-                commit('SET_ASKS',data);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    },
+    // },
+    // FETCH_ASKS({ commit }){
+    //     fetchAskList()
+    //         .then(({ data }) => {
+    //             commit('SET_ASKS',data);
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // },
     FETCH_USER({ commit }, username){
         fetchUserInfo(username)
             .then(({ data }) => {
